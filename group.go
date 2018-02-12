@@ -12,7 +12,7 @@ type Group struct {
 	SID               string
 }
 
-//Groups ...
+// Groups ...
 type Groups []Group
 
 const (

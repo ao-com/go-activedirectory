@@ -69,6 +69,13 @@ func TestClient(t *testing.T) {
 
 			So(err, ShouldBeNil)
 		})
+
+		Convey("GetADGroups should return some active directory groups", func() {
+			groups, err := client.GetADGroups("")
+
+			So(err, ShouldBeNil)
+			So(groups, ShouldNotBeNil)
+		})
 	})
 
 	Convey("Given new client with bad credentials", t, func() {

@@ -83,7 +83,11 @@ func (client Client) GetADGroups(path string) (Groups, error) {
 
 	defer shell.Exit()
 	cmd := fmt.Sprintf("%s\n", client.credentialsCommand)
-	cmd += fmt.Sprintf("Get-ADGroup filter * -SearchBase \"%s\" -Credential $credentials", path)
+	cmd += "Get-ADGroup -Filter * -Credential $credentials"
+	if path != "" {
+		cmd += fmt.Sprintf(" -SearchBase \"%s\"", path)
+	}
+
 	stout, _, err := shell.Execute(cmd)
 	if err != nil {
 		return nil, err
