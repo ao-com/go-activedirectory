@@ -1,0 +1,28 @@
+
+distinguishedName : CN=Some Person 1,OU=Some OU 1,OU=Some OU 2,OU=Some OU 3,OU=Some OU 4,OU=Some OU 5,DC=Some DC 1,DC=Some DC 2
+name              : Some Person 1
+objectClass       : user
+objectGUID        : 780085ef-8823-47e5-98d9-11051dc2d5c9
+SamAccountName    : SPERSON1
+SID               : S-0-0-00-0000000000-000000000-000000000-0000
+
+distinguishedName : CN=Some Person 2,OU=Some OU 1,OU=Some OU 2,OU=Some OU 3,OU=Some OU 4,OU=Some OU 5,DC=Some DC 1,DC=Some DC 2
+name              : Some Person 2
+objectClass       : user
+objectGUID        : 1610d077-d9fc-4cbb-a16b-ee7b4c5ff615
+SamAccountName    : SPERSON2
+SID               : S-0-0-00-0000000000-000000000-000000000-0000
+
+distinguishedName : CN=Some Person 3,OU=Some OU 1,OU=Some OU 2,OU=Some OU 3,OU=Some OU 4,OU=Some OU 5,DC=Some DC 1,DC=Some DC 2
+name              : Some Person 3
+objectClass       : user
+objectGUID        : d14968f2-6e28-4b99-bee9-c1e074c1b5d2
+SamAccountName    : SPERSON3
+SID               : S-0-0-00-0000000000-000000000-000000000-0000
+
+distinguishedName : CN=Some Person 4,OU=Some OU 1,OU=Some OU 2,OU=Some OU 3,OU=Some OU 4,OU=Some OU 5,DC=Some DC 1,DC=Some DC 2
+name              : Some Person 4
+objectClass       : user
+objectGUID        : 0c110996-40de-4060-9927-ec3517d350b2
+SamAccountName    : SPERSON4
+SID               : S-0-0-00-0000000000-000000000-000000000-0000
