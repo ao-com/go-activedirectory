@@ -71,7 +71,7 @@ func TestClient(t *testing.T) {
 		})
 
 		Convey("GetADGroups should return some active directory groups", func() {
-			groups, err := client.GetADGroups("")
+			groups, err := client.GetADGroups("", "")
 
 			So(err, ShouldBeNil)
 			So(groups, ShouldNotBeNil)

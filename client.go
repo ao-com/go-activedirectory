@@ -74,7 +74,7 @@ func (client Client) GetADGroup(name string) (*Group, error) {
 }
 
 // GetADGroups ...
-func (client Client) GetADGroups(path string) (Groups, error) {
+func (client Client) GetADGroups(filter string, path string) (Groups, error) {
 	back := &backend.Local{}
 	shell, err := ps.New(back)
 	if err != nil {
@@ -84,6 +84,10 @@ func (client Client) GetADGroups(path string) (Groups, error) {
 	defer shell.Exit()
 	cmd := fmt.Sprintf("%s\n", client.credentialsCommand)
 	cmd += "Get-ADGroup -Filter * -Credential $credentials"
+	if filter != "" {
+		cmd = strings.Replace(cmd, "-Filter *", fmt.Sprintf("-Filter %s", filter), -1)
+	}
+
 	if path != "" {
 		cmd += fmt.Sprintf(" -SearchBase \"%s\"", path)
 	}
