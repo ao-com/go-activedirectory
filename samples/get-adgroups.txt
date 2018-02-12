@@ -1,0 +1,26 @@
+DistinguishedName : CN=SomeGroup1,OU=SomeOU Groups,DC=somedc,DC=local
+GroupCategory     : Security
+GroupScope        : Universal
+Name              : SomeGroup
+ObjectClass       : group
+ObjectGUID        : 8562e62c-ebd9-474f-a1d6-bdd79e4b678c
+SamAccountName    : SomeAccount1
+SID               : S-0-0-00-0000000000-000000000-000000000-00000
+
+DistinguishedName : CN=SomeGroup2,OU=SomeOU Groups,DC=somedc,DC=local
+GroupCategory     : Security
+GroupScope        : Universal
+Name              : SomeGroup2
+ObjectClass       : group
+ObjectGUID        : 5912094c-9376-4c8c-9590-dc1b19fd1fb2
+SamAccountName    : SomeAccount2
+SID               : S-0-0-00-0000000000-000000000-000000000-00000
+
+DistinguishedName : CN=SomeGroup3,OU=SomeOU Groups,DC=somedc,DC=local
+GroupCategory     : Security
+GroupScope        : Universal
+Name              : SomeGroup3
+ObjectClass       : group
+ObjectGUID        : 214d570c-e4c8-4d13-b7e1-040c9a738750
+SamAccountName    : SomeAccount3
+SID               : S-0-0-00-0000000000-000000000-000000000-00000

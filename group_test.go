@@ -51,4 +51,28 @@ func TestGroup(t *testing.T) {
 			})
 		})
 	})
+
+	Convey("Given active directory groups", t, func() {
+		groups := Groups{}
+
+		Convey("When parsing from text", func() {
+			bytes, _ := ioutil.ReadFile("./samples/get-adgroups.txt")
+			adGroupsSample := string(bytes)
+			err := groups.ParseFromText(adGroupsSample)
+
+			So(err, ShouldBeNil)
+
+			Convey("Should parse entries correctly", func() {
+				So(len(groups), ShouldEqual, 3)
+				So(groups[2].DistinguishedName, ShouldEqual, "CN=SomeGroup3,OU=SomeOU Groups,DC=somedc,DC=local")
+				So(groups[2].Name, ShouldEqual, "SomeGroup3")
+				So(groups[2].ObjectClass, ShouldEqual, "group")
+				So(groups[2].ObjectGUID, ShouldEqual, "214d570c-e4c8-4d13-b7e1-040c9a738750")
+				So(groups[2].SAMAccountName, ShouldEqual, "SomeAccount3")
+				So(groups[2].SID, ShouldEqual, "S-0-0-00-0000000000-000000000-000000000-00000")
+				So(groups[2].GroupCategory, ShouldEqual, "Security")
+				So(groups[2].GroupScope, ShouldEqual, "Universal")
+			})
+		})
+	})
 }
