@@ -73,6 +73,29 @@ func (client Client) GetADGroup(name string) (*Group, error) {
 	return &group, nil
 }
 
+// GetADGroups ...
+func (client Client) GetADGroups(path string) (Groups, error) {
+	back := &backend.Local{}
+	shell, err := ps.New(back)
+	if err != nil {
+		return nil, err
+	}
+
+	defer shell.Exit()
+	cmd := fmt.Sprintf("%s\n", client.credentialsCommand)
+	cmd += fmt.Sprintf("Get-ADGroup filter * -SearchBase \"%s\" -Credential $credentials", path)
+	stout, _, err := shell.Execute(cmd)
+	if err != nil {
+		return nil, err
+	}
+
+	stout = strings.TrimLeft(stout, "\r\n")
+	stout = strings.TrimRight(stout, "\r\n")
+	groups := Groups{}
+	groups.ParseFromText(stout)
+	return groups, nil
+}
+
 // GetADGroupMembers ...
 func (client Client) GetADGroupMembers(name string) (GroupMembers, error) {
 	back := &backend.Local{}
