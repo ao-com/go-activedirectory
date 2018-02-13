@@ -127,6 +127,24 @@ func (client Client) GetADGroupMembers(name string) (GroupMembers, error) {
 	return groupmembers, nil
 }
 
+// IsActiveDirectoryModuleInstalled ...
+func (client Client) IsActiveDirectoryModuleInstalled() (bool, error) {
+	back := &backend.Local{}
+	shell, err := ps.New(back)
+	if err != nil {
+		return false, err
+	}
+
+	defer shell.Exit()
+	cmd := "if (Get-Module -List activedirectory) {'true'}"
+	stout, _, err := shell.Execute(cmd)
+	if err != nil {
+		return false, err
+	}
+
+	return strings.Contains(stout, "true"), nil
+}
+
 // NewADGroup creates an active directory group
 func (client Client) NewADGroup(name string, groupScope int, path string) error {
 	back := &backend.Local{}

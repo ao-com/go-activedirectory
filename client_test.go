@@ -28,6 +28,13 @@ func TestClient(t *testing.T) {
 			So(client.credentialsCommand, ShouldEqual, fmt.Sprintf("%s\n%s\n", securePasswordCommand, credentialsCommand))
 		})
 
+		Convey("IsActiveDirectoryModuleInstalled should return true", func() {
+			isInstalled, err := client.IsActiveDirectoryModuleInstalled()
+
+			So(err, ShouldBeNil)
+			So(isInstalled, ShouldBeTrue)
+		})
+
 		Convey("NewADGroup should create a new active directory group", func() {
 			err := client.NewADGroup("go-activedirectory-test", GroupScopeUniversal, "")
 
