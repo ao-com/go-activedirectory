@@ -75,4 +75,27 @@ func TestGroup(t *testing.T) {
 			})
 		})
 	})
+
+	Convey("Given active directory group with multiline DistinguishedName", t, func() {
+		group := Group{}
+
+		Convey("When parsing from text", func() {
+			bytes, _ := ioutil.ReadFile("./samples/get-adgroups_multiline_dn.txt")
+			adGroupsSample := string(bytes)
+			err := group.ParseFromText(adGroupsSample)
+
+			So(err, ShouldBeNil)
+
+			Convey("Should parse entries correctly", func() {
+				So(group.DistinguishedName, ShouldEqual, "CN=Some OU Administrators,OU=Some OU Location,OU=Some OU Groups,OU=Some OU Team Department,DC=domain,DC=local")
+				So(group.Name, ShouldEqual, "Some OU Administrators")
+				So(group.ObjectClass, ShouldEqual, "group")
+				So(group.ObjectGUID, ShouldEqual, "efaf7005-ed81-40e2-b6bb-083e346333ef")
+				So(group.SAMAccountName, ShouldEqual, "Some OU Administrators")
+				So(group.SID, ShouldEqual, "S-1-5-21-0000000000-000000000-000000000-00000")
+				So(group.GroupCategory, ShouldEqual, "Security")
+				So(group.GroupScope, ShouldEqual, "Global")
+			})
+		})
+	})
 }

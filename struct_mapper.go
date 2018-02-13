@@ -31,7 +31,7 @@ func setField(obj interface{}, name string, value interface{}) error {
 	return nil
 }
 
-func fillStruct(s interface{}, m map[string]interface{}) error {
+func fillStruct(s interface{}, m map[string]string) error {
 	for k, v := range m {
 		err := setField(s, k, v)
 		if err != nil {
@@ -43,18 +43,26 @@ func fillStruct(s interface{}, m map[string]interface{}) error {
 }
 
 func fillStructFromPowershellOutput(s interface{}, text string) error {
-	structMap := make(map[string]interface{})
+	structMap := make(map[string]string)
 	lines := strings.Split(text, "\n")
+	var previousWord string
 	for _, line := range lines {
-		if line == "\r" || line == "\n" || line == "\r\n" || line == "" {
+		if isTextBlank(line) {
 			continue
 		}
 
 		lineSplit := strings.Split(line, ": ")
-		lineEnd := lineSplit[1]
-		lineEndTrimmed := strings.TrimRight(lineEnd, "\r\n")
-		words := strings.Fields(line)
-		structMap[words[0]] = lineEndTrimmed
+		if len(lineSplit) == 1 && !isTextBlank(previousWord) {
+			lineTrimmed := strings.TrimLeft(line, " ")
+			lineTrimmed = strings.TrimRight(lineTrimmed, "\r\n")
+			structMap[previousWord] += fmt.Sprintf(" %s", lineTrimmed)
+		} else {
+			lineEnd := lineSplit[1]
+			lineEndTrimmed := strings.TrimRight(lineEnd, "\r\n")
+			words := strings.Fields(line)
+			previousWord = words[0]
+			structMap[words[0]] = lineEndTrimmed
+		}
 	}
 
 	return fillStruct(s, structMap)

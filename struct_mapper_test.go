@@ -9,7 +9,7 @@ import (
 
 func TestStructMapper(t *testing.T) {
 	Convey("Given map", t, func() {
-		testMap := map[string]interface{}{
+		testMap := map[string]string{
 			"SomeKeyOne": "somevalueone",
 			"somekeytwo": "somevaluetwo",
 		}

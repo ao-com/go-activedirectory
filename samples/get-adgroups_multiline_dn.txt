@@ -1,0 +1,11 @@
+
+
+DistinguishedName : CN=Some OU Administrators,OU=Some OU Location,OU=Some OU Groups,OU=Some OU
+                    Team Department,DC=domain,DC=local
+GroupCategory     : Security
+GroupScope        : Global
+Name              : Some OU Administrators
+ObjectClass       : group
+ObjectGUID        : efaf7005-ed81-40e2-b6bb-083e346333ef
+SamAccountName    : Some OU Administrators
+SID               : S-1-5-21-0000000000-000000000-000000000-00000
