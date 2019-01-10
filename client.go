@@ -4,8 +4,8 @@ import (
 	"fmt"
 	"strings"
 
-	ps "github.com/gorillalabs/go-powershell"
-	"github.com/gorillalabs/go-powershell/backend"
+	ps "github.com/ao-com/go-powershell"
+	"github.com/ao-com/go-powershell/backend"
 )
 
 // Client for active directory
